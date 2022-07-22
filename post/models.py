@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 
 from django.forms import DateField
+from numpy import True_
 
 # Create your models here.
 
@@ -29,3 +30,9 @@ class Author(models.Model):
     
 class Category(models.Model):
     title = models.CharField(max_length = 100)
+    
+    
+class Comment(models.Model):
+    user = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='comment')
+    content = models.TextField()
+    comment_time = models.DateTimeField(auto_now_add = True_)
